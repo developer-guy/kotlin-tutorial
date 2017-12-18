@@ -17,10 +17,19 @@ fun main(args: Array<String>) {
 
     val numbers: List<Int> = asList(1, 2, 3, 4, 5, 6)
     numbers.forEach { println(it) }
+
+    1 double 2
+
+
+    println(lock(body = { x -> x * 2 }))
 }
 
 
 fun powerOf(number: Int, exponent: Int) {
+
+}
+
+interface x {
 
 }
 
@@ -54,4 +63,16 @@ fun <T> asList(vararg numbers: T): List<T> {
     val result = ArrayList<T>()
     result += numbers
     return result
+}
+
+
+// define extension to Int
+infix fun Int.double(x: Int): Int {
+    return x * 2
+}
+
+
+// High order functions means takes functions as a parameter
+fun <T> lock(body: (x: Int) -> T): T {
+    return body(5)
 }

@@ -8,6 +8,8 @@ class Box<T> constructor(t: T) {
 
 
 fun main(args: Array<String>) {
+
+
     var box: Box<Int> = Box(1)
     println("Box value ${box.value}")
 
@@ -25,8 +27,8 @@ fun copy2(arr: Array<in Int>) { // in Int means -->  ? super Int
 
 }
 
-fun copy(from: Array<out Any>): Array<in Int> { // out Any means -- >
-    var to: Array<Number> = Array(from.size, { it })
+fun copy(from: Array<out Any>): Array<in Int> { // out Any means --> ? extends Any
+    var to: Array<Number> = Array(from.size, { i: Int -> i })
     println("Copy started: ${LocalDateTime.now()}")
     for ((i, v) in from.withIndex()) {
         to[i] = v as Int

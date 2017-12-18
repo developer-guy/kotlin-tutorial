@@ -17,6 +17,7 @@ val <T> MutableList<T>.lastIndex: Int get() = this.size - 1
 fun Any?.toString(): String = if (Objects.isNull(this)) "null" else toString()
 
 fun main(args: Array<String>) {
+
     val mutableList: MutableList<Any> = mutableListOf(1, 2, 3)
     var lastIndex = mutableList.lastIndex
     println("Last index $lastIndex ")
@@ -37,7 +38,6 @@ fun main(args: Array<String>) {
     Z().caller(D())
 
     val number: Any? = null
-
 
     var isNull = number.toString()
 

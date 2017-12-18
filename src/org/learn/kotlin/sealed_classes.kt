@@ -17,7 +17,7 @@ object NotANumber : Expr() {
 }
 
 fun main(args: Array<String>) {
-    var const = Const(10.1)
+    val const = Const(10.1)
     println(eval(const))
 }
 

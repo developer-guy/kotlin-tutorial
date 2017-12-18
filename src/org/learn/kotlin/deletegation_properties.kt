@@ -43,6 +43,8 @@ fun main(args: Array<String>) {
             "age" to 20
     ))
 
+    mapOf("age" to 21, "name" to 123)
+
     println(user.name) // Prints "John Doe"
     println(user.age)
     println(user.gender)

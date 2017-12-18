@@ -47,7 +47,7 @@ fun countClicks(window: JComponent) {
 }
 
 
-//objects cant have constructors but have super classes
+//objects can't have constructors but have super classes
 object MouseAdapterListener : MouseAdapter() {
     var clickCount = 0
     var enterCount = 0
@@ -80,7 +80,7 @@ interface Factory<T> {
 class MyClass private constructor() {
     val myClassSingleRefId = 12312312421L
 
-    companion object : Factory<MyClass> {          // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass.Companion diye çağrım yapılacaktı.
+    companion object FactoryObject : Factory<MyClass> {          // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass.Companion diye çağrım yapılacaktı.
         override fun create(): MyClass = MyClass()  //MyClass.Companion.create()
     }
 }

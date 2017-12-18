@@ -16,5 +16,5 @@ fun main(args: Array<String>) {
     val demo = OuterClass().NestedClass().foo()
     println(demo)
 
-    val listener = ActionListener { println("clicked") }
+    val listener = ActionListener { e -> println("${e.actionCommand} executed...") }
 }
