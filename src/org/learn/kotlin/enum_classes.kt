@@ -6,13 +6,13 @@ enum class Direction {
 
 enum class ProtocolState {
     WAITING {
-        override fun signal() = TALKING
+        override fun signal() = this.name
     },
     TALKING {
-        override fun signal() = WAITING
+        override fun signal() = this.name
     };
 
-    abstract fun signal(): ProtocolState
+    abstract fun signal(): String
 }
 
 enum class Color(val rgb: Int) {

@@ -9,7 +9,7 @@ interface RectangleProperties {
     val isSquare: Boolean
 }
 
-class Rectangle constructor(var height: Double, var length: Double) :
+class Rectangle constructor(private var height: Double, private var length: Double) :
         Shape(listOf(height, length)), RectangleProperties {
     override fun calculateArea(): Double = height * length
 

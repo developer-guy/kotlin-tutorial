@@ -12,11 +12,28 @@ interface InterfaceOne {
 
 }
 
+interface Factory<T> {
+    fun create(): T
+}
+
+
+//companion objects
+internal class MyClass private constructor() {
+    val myClassSingleRefId = 12312312421L
+
+    companion object FactoryObject : Factory<MyClass> {     // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass.Companion diye çağrım yapılacaktı.
+        override fun create(): MyClass = MyClass()  //MyClass.Companion.create()
+    }
+}
+
 fun main(args: Array<String>) {
 
     var jsonObject = object {
-        var node1: String = ""
+        var node1: String = "123"
+        var node2: Int = 19
     }
+
+    println(jsonObject.node1.toInt() + jsonObject.node2)
 
     val ab: ClassOne = object : ClassOne(1), InterfaceOne {
         override val y: Int
@@ -30,6 +47,9 @@ fun main(args: Array<String>) {
 
     val myClassInstance = MyClass.create()
     println(myClassInstance.myClassSingleRefId)
+
+    val myClassInstance2 = MyClass.create()
+    println(myClassInstance2.myClassSingleRefId)
 
 }
 
@@ -72,15 +92,3 @@ object SampleObject {
 }
 
 
-interface Factory<T> {
-    fun create(): T
-}
-
-//companion objects
-class MyClass private constructor() {
-    val myClassSingleRefId = 12312312421L
-
-    companion object FactoryObject : Factory<MyClass> {          // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass.Companion diye çağrım yapılacaktı.
-        override fun create(): MyClass = MyClass()  //MyClass.Companion.create()
-    }
-}

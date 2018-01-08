@@ -13,12 +13,11 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
 val <T> MutableList<T>.lastIndex: Int get() = this.size - 1
 
 //Nullable Receiver
-
 fun Any?.toString(): String = if (Objects.isNull(this)) "null" else toString()
 
 fun main(args: Array<String>) {
 
-    val mutableList: MutableList<Any> = mutableListOf(1, 2, 3)
+    val mutableList: MutableList<Int> = mutableListOf(1, 2, 3)
     var lastIndex = mutableList.lastIndex
     println("Last index $lastIndex ")
 
@@ -56,7 +55,7 @@ fun X.foo(i: Int) {
 }
 
 class Myclass {
-    companion object {
+    companion object { //like static methods
         fun xxxx() {
             println("Companion")
         }

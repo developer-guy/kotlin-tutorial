@@ -1,7 +1,5 @@
 package org.learn.kotlin
 
-import java.awt.event.ActionListener
-
 
 class OuterClass {
     private val bar: Int = 1
@@ -15,6 +13,4 @@ class OuterClass {
 fun main(args: Array<String>) {
     val demo = OuterClass().NestedClass().foo()
     println(demo)
-
-    val listener = ActionListener { e -> println("${e.actionCommand} executed...") }
 }

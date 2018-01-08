@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     var box: Box<Int> = Box(1)
     println("Box value ${box.value}")
 
-    val box2 = Box("1")
+    val box2: Box<String> = Box("1")
     println("Box value ${box2.value}")
 
     val numbers: Array<Int> = arrayOf(1, 2, 3, 4, 5)
@@ -31,7 +31,7 @@ fun copy(from: Array<out Any>): Array<in Int> { // out Any means --> ? extends A
     var to: Array<Number> = Array(from.size, { i: Int -> i })
     println("Copy started: ${LocalDateTime.now()}")
     for ((i, v) in from.withIndex()) {
-        to[i] = v as Int
+        to[i] = v as Int // type casting
     }
     println("Copy finished: ${LocalDateTime.now()}")
     return to

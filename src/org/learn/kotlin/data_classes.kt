@@ -16,6 +16,11 @@ fun main(args: Array<String>) {
     //Destructuring Declarations
     val (name, age, gender) = user
 
-    println("Name $name and age $age and gender $gender of the user")
+    println("Name $name age $age gender $gender")
+
+    //Desctructring array
+    val (el1, el2, el3) = arrayOf(1, 2, 3)
+
+    println("el1 $el1 el2 $el2 el3 $el3")
 
 }

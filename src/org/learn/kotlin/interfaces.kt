@@ -1,6 +1,6 @@
 package org.learn.kotlin
 
-interface MyInterface {
+interface MyInterface { //içerisindeki function veya fieldlar default olarak open tanımlı.
     val prop: Int //abstract
 
     val propertyWithImpl: String

@@ -7,8 +7,10 @@ fun main(args: Array<String>) {
     println("$result")
     // Sample().foo() // Sample sınıfından bir instance üretilip foo methodunun çağrımı
 
-    foo(1) { println("hello") } // Uses the default value baz = 1
-    foo { println("hello") }// Uses both default values bar = 0 and baz = 1
+
+
+    foo(1, 3, ::innerMethod)  // Uses the default value baz = 1
+    foo { s, y -> println("hello") }// Uses both default values bar = 0 and baz = 1
 
     reformat(str = "a") //named argument
 
@@ -24,12 +26,16 @@ fun main(args: Array<String>) {
     println(lock(body = { x -> x * 2 }))
 }
 
+fun innerMethod(s: String, y: Int): Unit {
+    println(s + y)
+}
+
 
 fun powerOf(number: Int, exponent: Int) {
 
 }
 
-interface x {
+interface k {
 
 }
 
@@ -37,7 +43,7 @@ interface x {
 fun defaultArguments(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
 }
 
-fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) {}
+fun foo(bar: Int = 0, baz: Int = 1, qux: (s: String, y: Int) -> Unit) {}
 
 fun reformat(str: String,
              normalizeCase: Boolean = true,
@@ -52,7 +58,7 @@ fun variableArgs(vararg numbers: Int) {} //variadic function
 
 fun printHello(name: String?): Unit { //unit returning function
     if (name != null)
-        println("Hello ${name}")
+        println("Hello $name")
     else
         println("Hi there!")
 }

@@ -7,7 +7,9 @@ class Example {
     var p: String by Delegate()
 }
 
-class Delegate {
+class Delegate() {
+
+
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
         return "$thisRef, thank you for delegating '${property.name}' to me!"
     }
@@ -17,10 +19,10 @@ class Delegate {
     }
 }
 
-class Userc(userProp: Map<String, Any?>) {
+class Userc constructor(lazyMap: Map<String, Any?>) {
     val gender: String  by lazy(mode = LazyThreadSafetyMode.NONE, initializer = { "male" })
-    val name: String by userProp  // val keywordü için Map kullanılırken var olsaydı Mutablemap demeliydik.
-    val age: Int     by userProp
+    val name: String by lazyMap  // val keywordü için Map kullanılırken var olsaydı Mutablemap demeliydik.
+    val age: Int     by lazyMap
 }
 
 

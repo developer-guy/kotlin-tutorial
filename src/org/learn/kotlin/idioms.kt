@@ -83,6 +83,8 @@ fun main(args: Array<String>) {
     """.trimMargin(">")
 
     println(text)
+
+    println("Batuhan".lastCharacter)
 }
 
 /* default values for function parameters*/
@@ -95,6 +97,12 @@ fun printCustomerInformation(email: String = "xx", name: String = "Asena") {
 fun String.spaceToCamelCase() {
     println(this + ":: spaceToCamelCase called")
 }
+
+
+val String.lastCharacter: Char
+    get() {
+        return this[this.length - 1]
+    }
 
 
 /* creating singleton */
