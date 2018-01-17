@@ -8,7 +8,6 @@ fun main(args: Array<String>) {
     // Sample().foo() // Sample sınıfından bir instance üretilip foo methodunun çağrımı
 
 
-
     foo(1, 3, ::innerMethod)  // Uses the default value baz = 1
     foo { s, y -> println("hello") }// Uses both default values bar = 0 and baz = 1
 
@@ -18,7 +17,8 @@ fun main(args: Array<String>) {
     variableArgs(1, 2, 3, 4, 5, 6) // variadic function example
 
     val numbers: List<Int> = asList(1, 2, 3, 4, 5, 6)
-    numbers.forEach { println(it) }
+    var printFunction = {number: Int -> println(number)}
+    numbers.forEach(printFunction)
 
     1 double 2
 
@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
     println(lock(body = { x -> x * 2 }))
 }
 
-fun innerMethod(s: String, y: Int): Unit {
+fun innerMethod(s: String, y: Int) {
     println(s + y)
 }
 

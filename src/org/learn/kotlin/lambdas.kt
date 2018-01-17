@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
 
     val names = listOf("Batuhan", "Asena", "Mehmet", "Ayşe")
 
-    names.filter(fun(s): Boolean {  //anonymous function example
+    names.filter(fun(s: String): Boolean {  //anonymous function example
         return s.length >= 5
     })
 

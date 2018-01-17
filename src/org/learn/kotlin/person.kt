@@ -18,7 +18,7 @@ open class Human constructor(val name: String) {
 
 }
 
-open class Person constructor(name: String) : Human(name) {
+open class Person constructor(name: String) : Human(name)  {
     override val sex: Int
         get() = 5
 

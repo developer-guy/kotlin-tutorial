@@ -104,6 +104,8 @@ val String.lastCharacter: Char
         return this[this.length - 1]
     }
 
+// the second way
+// val String.lastCharacter: Char get() = this[this.length -1]
 
 /* creating singleton */
 object Resource {

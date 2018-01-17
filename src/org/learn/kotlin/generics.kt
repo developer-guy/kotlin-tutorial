@@ -3,7 +3,7 @@ package org.learn.kotlin
 import java.time.LocalDateTime
 
 class Box<T> constructor(t: T) {
-    var value = t
+    val value  = t
 }
 
 

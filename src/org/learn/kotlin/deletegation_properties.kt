@@ -7,7 +7,7 @@ class Example {
     var p: String by Delegate()
 }
 
-class Delegate() {
+class Delegate {
 
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
