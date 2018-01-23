@@ -4,6 +4,14 @@ import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JComponent
 
+// syntax
+
+/* val x = object {
+    a: String = "a"
+    b: String  = "b"
+}
+*/
+
 open class ClassOne(x: Int) {
     open val y: Int = x
 }

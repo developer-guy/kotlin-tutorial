@@ -9,7 +9,6 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
     return this
 }
 
-
 val <T> MutableList<T>.lastIndex: Int get() = this.size - 1
 
 //Nullable Receiver

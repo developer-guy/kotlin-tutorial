@@ -19,7 +19,7 @@ class Delegate {
     }
 }
 
-class Userc constructor(lazyMap: Map<String, Any?>) {
+class UserByMap constructor(lazyMap: Map<String, Any?>) {
     val gender: String  by lazy(mode = LazyThreadSafetyMode.NONE, initializer = { "male" })
     val name: String by lazyMap  // val keywordü için Map kullanılırken var olsaydı Mutablemap demeliydik.
     val age: Int     by lazyMap
@@ -31,16 +31,15 @@ fun main(args: Array<String>) {
     println(ex.p)
     ex.p = "NEW"
 
-    val lazyVal: String by lazy(LazyThreadSafetyMode.NONE, { "Init" })
+    val lazyVal: String by lazy(mode = LazyThreadSafetyMode.NONE, initializer = { "Init" })
 
-    var observableVal: String by Delegates.observable("<no-name>") { property, oldValue, newValue ->
-        println("$oldValue -> $newValue")
-    }
+    val delegetaesObservable = { _: KProperty<*>, oldValue: String, newValue: String -> println("$oldValue -> $newValue") }
+    var observableVal: String by Delegates.observable("<no-name>", onChange = delegetaesObservable)
 
     observableVal = "10"
     observableVal = "20"
 
-    var user = Userc(mapOf(
+    var user = UserByMap(mapOf(
             "name" to "John Doe",
             "age" to 20
     ))

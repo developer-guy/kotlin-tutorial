@@ -18,14 +18,14 @@ open class Human constructor(val name: String) {
 
 }
 
-open class Person constructor(name: String) : Human(name)  {
-    override val sex: Int
-        get() = 5
-
+open class Person constructor(name: String) : Human(name) {
     init {
         logger.info("Super class field name is : ${super.name}")
         logger.info("Person initialized with name $name")
     }
+
+    override val sex: Int
+        get() = 5
 
     override fun v() {
         logger.info("I am v")

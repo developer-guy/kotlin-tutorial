@@ -2,24 +2,14 @@ package org.learn.kotlin
 
 /** Defining Functions*/
 
-fun sum(a: Int, b: Int): Int {
-    return a + b
-}
+fun sum(a: Int, b: Int): Int = a + b
 
 /** Function with an expression body and inferred return type*/
-fun subtraction(a: Int, b: Int): Int? {
-
-    if (a < 0 || b < 0) {
-        return null
-    }
-
-    return a - b
-}
+fun subtraction(a: Int, b: Int): Int? = if (a < 0 || b < 0) null else a - b
 
 /** Function returning no meaningful value*/
-fun printSum(a: Int, b: Int) {
-    println("sum of $a and $b is ${a + b}")
-}
+fun printSum(a: Int, b: Int) = println("sum of $a and $b is ${a + b}")
+
 
 /* Using conditional expression */
 fun maxOf(a: Int, b: Int) = if (a > b) a else b
@@ -40,11 +30,7 @@ fun printProduct(arg1: String, arg2: String) {
 }
 
 
-fun getStringLength(obj: Any): Int? {
-    if (obj !is String) return null
-
-    return obj.length
-}
+fun getStringLength(obj: Any): Int? = if (obj !is String) null else obj.length
 
 
 fun main(args: Array<String>) {

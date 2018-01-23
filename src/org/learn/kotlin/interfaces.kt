@@ -12,11 +12,17 @@ interface MyInterface { //içerisindeki function veya fieldlar default olarak op
     }
 }
 
+
 class Child : MyInterface {
     override val prop: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        get() = "123".toInt()
 
     override fun bar() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+}
+
+fun main(args: Array<String>) {
+    val child = Child()
+    child.foo()
 }

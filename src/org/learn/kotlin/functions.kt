@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
     variableArgs(1, 2, 3, 4, 5, 6) // variadic function example
 
     val numbers: List<Int> = asList(1, 2, 3, 4, 5, 6)
-    var printFunction = {number: Int -> println(number)}
+    var printFunction = { number: Int -> println(number) } // lambda function always be inside curly braces
     numbers.forEach(printFunction)
 
     1 double 2

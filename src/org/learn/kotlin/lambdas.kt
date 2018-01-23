@@ -32,21 +32,23 @@ fun main(args: Array<String>) {
 
     val names = listOf("Batuhan", "Asena", "Mehmet", "Ayşe")
 
-    names.filter(fun(s: String): Boolean {  //anonymous function example
+
+    val filterFun = fun(s: String): Boolean {  //anonymous function example
         return s.length >= 5
-    })
+    }
 
+    names.filter(filterFun)
 
-    val upperCaseAndLengthGreaterThanFiveNames = names.
-            filter { it.length >= 5 }.
-            sortedBy { it }.
-            map { it.toUpperCase() }
+    val upperCaseAndLengthGreaterThanFiveNames = names.filter { it.length >= 5 }.sortedBy { it }.map { it.toUpperCase() }
 
     println(upperCaseAndLengthGreaterThanFiveNames)
 
     // A lambda expression is always surrounded by curly braces,
     val sum = { x: Int, y: Int -> x + y } //Lambda expression syntax
 
+    val sum3 = fun(x: Int, y: Int): Int { // the same as above
+        return x + y
+    }
 
     val sum2 = fun Int.(other: Int) = this + other // Function Literals with Receiver
 
