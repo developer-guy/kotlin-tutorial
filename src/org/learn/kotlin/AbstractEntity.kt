@@ -3,7 +3,7 @@ package org.learn.kotlin
 import java.io.Serializable
 
 abstract class AbstractEntity<T : Serializable> : BaseEntity<T>, Serializable {
-    private lateinit var id: T
+    private var id: T? = null
 
     override fun getId(): T? = id
 
