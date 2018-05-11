@@ -9,7 +9,6 @@ class Example {
 
 class Delegate {
 
-
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
         return "$thisRef, thank you for delegating '${property.name}' to me!"
     }
@@ -19,7 +18,10 @@ class Delegate {
     }
 }
 
-class UserByMap constructor(lazyMap: Map<String, Any?>) {
+
+// delegation için "by" keywordü kullanılıyor.
+// constructor keywordü opsiyonel yani yazmasak da olur.
+class UserByMap internal constructor(lazyMap: Map<String, Any?>) {
     val gender: String  by lazy(mode = LazyThreadSafetyMode.NONE, initializer = { "male" })
     val name: String by lazyMap  // val keywordü için Map kullanılırken var olsaydı Mutablemap demeliydik.
     val age: Int     by lazyMap
@@ -34,6 +36,8 @@ fun main(args: Array<String>) {
     val lazyVal: String by lazy(mode = LazyThreadSafetyMode.NONE, initializer = { "Init" })
 
     val delegetaesObservable = { _: KProperty<*>, oldValue: String, newValue: String -> println("$oldValue -> $newValue") }
+
+
     var observableVal: String by Delegates.observable("<no-name>", onChange = delegetaesObservable)
 
     observableVal = "10"
@@ -45,6 +49,8 @@ fun main(args: Array<String>) {
     ))
 
     mapOf("age" to 21, "name" to 123)
+
+    val pair = Pair("1", 1)
 
     println(user.name) // Prints "John Doe"
     println(user.age)

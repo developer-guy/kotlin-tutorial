@@ -11,24 +11,39 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
 
 val <T> MutableList<T>.lastIndex: Int get() = this.size - 1
 
+val <T> MutableList<T>.lastElement: T get() = this.get(this.lastIndex)
+
 //Nullable Receiver
 fun Any?.toString(): String = if (Objects.isNull(this)) "null" else toString()
 
 fun main(args: Array<String>) {
 
-    val mutableList: MutableList<Int> = mutableListOf(1, 2, 3)
+    var mutableList: MutableList<Int> = mutableListOf(1, 2, 3)
+
+    mutableList = mutableList.filterNulls()
+
     var lastIndex = mutableList.lastIndex
+
+    var lastElement = mutableList.lastElement
+
+    println("lastElement in list: $lastElement")
+
     println("Last index $lastIndex ")
 
     println("BEFORE SWAP ")
+
     for ((i, v) in mutableList.withIndex()) {
         println("Index: $i --- Value:$v")
     }
+
     val swap = mutableList.swap(1, 2)
+
     println("AFTER SWAP ")
+
     for ((i, v) in swap.withIndex()) {
         println("Index: $i --- Value:$v")
     }
+
     X().foo(1)
 
     Myclass.xxxx()
@@ -53,9 +68,13 @@ fun X.foo(i: Int) {
     println("I am an extension function with $i")
 }
 
+interface IMyClass {
+    fun xxxx(): Unit
+}
+
 class Myclass {
-    companion object { //like static methods
-        fun xxxx() {
+    companion object : IMyClass { //like static methods
+        override fun xxxx() {
             println("Companion")
         }
     }

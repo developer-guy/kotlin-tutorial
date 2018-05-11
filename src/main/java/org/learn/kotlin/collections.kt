@@ -2,7 +2,8 @@ package org.learn.kotlin
 
 fun main(args: Array<String>) {
     val numbers = mutableListOf(1, 2, 3)
-    numbers.add(numbers.size, 6)
+    numbers.add(numbers.size, 6) //same as below
+    numbers += 10  //adding element to list
     println(numbers)
     numbers.clear()
     println(numbers)
@@ -21,4 +22,25 @@ fun main(args: Array<String>) {
     println(readWriteMap["foo"])  // prints "1"
     val snapshot: Map<String, Int> = HashMap(readWriteMap)
     println(snapshot)
+
+
+    val mutableListWithNull = mutableListOf(1, null, 2, null)
+    val mutableListWithOutNull = mutableListWithNull.filterNulls()
+
+    mutableListWithOutNull.forEach { println(it) }
+}
+
+
+fun <T> MutableList<T>.filterNulls(): MutableList<T> {
+    val willRemoveElements = mutableListOf<T>()
+    for (element in this) {
+        if (element == null) {
+            val ind = willRemoveElements.size
+            willRemoveElements.add(ind, element)
+        }
+    }
+
+    this.removeAll(willRemoveElements)
+
+    return this
 }

@@ -2,13 +2,14 @@ package org.learn.kotlin
 
 import java.io.File as javaioFile
 
-/* data : provides a functionally to class for example getters,setters,hashCode,toString etc. */
+/* data : provides a functionally to class for example equals,hashCode,copy,toString,componentN functions for all properties etc. */
 data class Customer constructor(val name: String, val email: String) {
 
 }
 
 fun main(args: Array<String>) {
-    val customer = Customer("Batuhan", "bapaydin67@gmail.com")
+    val name = "Batuhan"
+    val customer = Customer(name, "bapaydin67@gmail.com")
     printCustomerInformation(customer.email)
 
     var numbers = listOf(1, 2, 3, 4, 5)
@@ -36,6 +37,7 @@ fun main(args: Array<String>) {
     //for(i in 1 until 100) // 100 geçerli değil
     //for (x in 2..100 step 3) // 3 er 3 er artarak
     //for(y in 100 downTo 5 step 10) 100 den 5 e kadar 10 ar 10 ar azalarak
+
     //if ( x in 1..10) x 1 ile 10 arasında mı ?
 
 
@@ -45,7 +47,7 @@ fun main(args: Array<String>) {
     val i = map["a"]
     println("Key a value is : $i")
 
-    "Batuhan".spaceToCamelCase()
+    name.spaceToCamelCase()
 
 
     val listFiles = javaioFile("Test").listFiles()
@@ -82,9 +84,27 @@ fun main(args: Array<String>) {
     |(Benjamin Franklin)
     """.trimMargin(">")
 
+
+    println(Resource.name)
+
     println(text)
 
-    println("Batuhan".lastCharacter)
+    println(name.lastCharacter)
+
+
+    val count = try {
+        count(name)
+    } catch (e: Exception) {
+        throw IllegalStateException(e)
+    }
+
+    println("$name length is $count")
+}
+
+fun count(str: String?): Int {
+    if (str == null) throw NullPointerException()
+
+    return str.length
 }
 
 /* default values for function parameters*/
@@ -114,13 +134,11 @@ object Resource {
 
 /* return on when statement*/
 fun transform(color: String): Int {
-    var result: Int = when (color) {
+    return when (color) {
         "Red" -> 0
         "Green" -> 1
         else -> throw IllegalArgumentException("Invalid color")
     }
-
-    return result
 }
 
 

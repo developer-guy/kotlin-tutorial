@@ -39,18 +39,23 @@ fun main(args: Array<String>) {
 
     names.filter(filterFun)
 
-    val upperCaseAndLengthGreaterThanFiveNames = names.filter { it.length >= 5 }.sortedBy { it }.map { it.toUpperCase() }
+    val upperCaseAndLengthGreaterThanFiveNames = names
+            .filter { it.length >= 5 }
+            .sortedBy { it }
+            .map { it.toUpperCase() }
 
     println(upperCaseAndLengthGreaterThanFiveNames)
 
     // A lambda expression is always surrounded by curly braces,
     val sum = { x: Int, y: Int -> x + y } //Lambda expression syntax
 
-    val sum3 = fun(x: Int, y: Int): Int { // the same as above
+    val sum4 = fun(x: Int, y: Int): Int { // the same as above
         return x + y
     }
 
-    val sum2 = fun Int.(other: Int) = this + other // Function Literals with Receiver
+    // Function Literals with Receiver
+    // { other -> this + other } şeklinde de tanımlanabilirdi.
+    val sum2: Int.(Int) -> Int = fun Int.(other: Int) = this + other
 
     val represent: String.(Int) -> Boolean = { other -> this.toIntOrNull() == other }
 
@@ -59,16 +64,44 @@ fun main(args: Array<String>) {
     println(1 sum3 5)
 
 
+    val rePresent: Int.(String) -> Boolean = fun Int.(s: String): Boolean {
+        return s.toInt().equals(this)
+    }
+
+    fun execute(s: String, intFunc: Int.(s: String) -> Boolean, i: Int) {
+        i.intFunc(s)
+    }
+
+    execute("123", rePresent, 123)
+
+
     println("123".represent(123))
 
     html {
         body()   // lambda with receiver begins here
         // calling a method on the receiver object
     }
+
+    val sampleDesign = sampleDesign {
+        sayMyName("XX")
+    }
+
+    println(sampleDesign)
 }
 
-infix fun Int.sum3(other: Int): Int {
-    return this + other
+infix fun Int.sum3(other: Int): Int = this + other
+
+
+class Sample {
+
+    fun sayMyName(s: String): Int = s.length
+
+}
+
+fun sampleDesign(func: Sample.() -> Int): Int {
+    val sample = Sample()
+    val func1 = sample.func()
+    return func1
 }
 
 

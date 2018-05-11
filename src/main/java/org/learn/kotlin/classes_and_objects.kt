@@ -1,6 +1,6 @@
 package org.learn.kotlin
 
-abstract class Shape constructor(val sides: List<Double>) {
+abstract class Shape constructor(private val sides: List<Double>) {
     val perimeter: Double get() = sides.sum()
     abstract fun calculateArea(): Double
 }
@@ -9,11 +9,11 @@ interface RectangleProperties {
     val isSquare: Boolean
 }
 
-class Rectangle constructor(private var height: Double, private var length: Double) :
+class Rectangle internal constructor(private var height: Double, private var length: Double) :
         Shape(listOf(height, length)), RectangleProperties {
     override fun calculateArea(): Double = height * length
 
-    override val isSquare: Boolean get() = length == height
+    override val isSquare: Boolean = length == height
 
 }
 

@@ -19,6 +19,12 @@ fun main(args: Array<String>) {
         }
     }
 
+    val y = 10
+
+    when (y) {
+        in 10 until 20 -> println("yes")
+        else -> println("no")
+    }
 
 
     x = 108

@@ -15,7 +15,7 @@ enum class ProtocolState {
     abstract fun signal(): String
 }
 
-enum class Color(val rgb: Int) {
+enum class Color constructor(val rgb: Int) {
     RED(rgb = 0xFF0000) {
         override fun sayIam(): Int {
             return this.rgb
@@ -43,6 +43,8 @@ inline fun <reified T : Enum<T>> printAllValues() {
 
 
 fun main(args: Array<String>) {
+    val realDirection: Direction = Direction.EAST
+
     var directions: Array<Direction> = Direction.values()
 
     val direction = Direction.valueOf("WEST")

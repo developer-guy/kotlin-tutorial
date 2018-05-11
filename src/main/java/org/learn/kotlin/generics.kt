@@ -3,7 +3,7 @@ package org.learn.kotlin
 import java.time.LocalDateTime
 
 class Box<T> constructor(t: T) {
-    val value  = t
+    val value = t
 }
 
 
@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
     println("Box value ${box2.value}")
 
     val numbers: Array<Int> = arrayOf(1, 2, 3, 4, 5)
-    val copyNumbers: Array<in Int> = copy(numbers)
+    val copyNumbers: Array<Number> = copy(numbers)
     println("3.index number in copy numbers: ${copyNumbers[3]}")
 
     copy2(copyNumbers)
@@ -27,30 +27,31 @@ fun copy2(arr: Array<in Int>) { // in Int means -->  ? super Int
 
 }
 
-fun copy(from: Array<out Any>): Array<in Int> { // out Any means --> ? extends Any
+fun copy(from: Array<out Any>): Array<Number> { // out Any means --> ? extends Any
     var to: Array<Number> = Array(from.size, { i: Int -> i })
     println("Copy started: ${LocalDateTime.now()}")
     for ((i, v) in from.withIndex()) {
         to[i] = v as Int // type casting
     }
     println("Copy finished: ${LocalDateTime.now()}")
-    return to
 
 
     1.convertToString()
     "a".convertToString()
     1.0.convertToString()
 
-    singletonList(1)
-    singletonList("a")
-    singletonList(1.0)
+    singletonList(1.0,1,"a")
 
     sort(listOf(1, 2, 3))
+
+
+    return to
+
     //sort(listOf<HashMap<String, Object>>())
 }
 
 
-fun <T> singletonList(t: T): List<T> {
+fun <T> singletonList(vararg t: T): List<Array<out T>> {
     return listOf(t)
 }
 

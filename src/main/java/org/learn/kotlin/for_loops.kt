@@ -7,6 +7,7 @@ fun main(args: Array<String>) {
 
     //First way to iterate on array
     val lenghOfArray = ints.size
+
     for (i in 0 until lenghOfArray) {
         println("Index $i value at index ${ints[i]}")
     }

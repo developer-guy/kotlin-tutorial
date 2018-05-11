@@ -14,6 +14,4 @@ fun main(args: Array<String>) {
     val author2 = article.component2()
 
     println("Name $name2 author $author2")
-
-
 }

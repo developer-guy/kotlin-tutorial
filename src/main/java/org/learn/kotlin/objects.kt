@@ -7,8 +7,8 @@ import javax.swing.JComponent
 // syntax
 
 /* val x = object {
-    a: String = "a"
-    b: String  = "b"
+    var a: String = "a"
+    var b: String  = "b"
 }
 */
 
@@ -26,17 +26,17 @@ interface Factory<T> {
 
 
 //companion objects
-internal class MyClass private constructor() {
-    val myClassSingleRefId = 12312312421L
+internal class MyClass2 private constructor() {
+    val myClassSingleRefId = Math.random()
 
-    companion object FactoryObject : Factory<MyClass> {     // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass.Companion diye çağrım yapılacaktı.
-        override fun create(): MyClass = MyClass()  //MyClass.Companion.create()
+    companion object : Factory<MyClass2> {     // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass2.Companion diye çağrım yapılacaktı.
+        override fun create(): MyClass2 = MyClass2()  //MyClass2.Companion.create()
     }
 }
 
 fun main(args: Array<String>) {
 
-    var jsonObject = object {
+    val jsonObject = object {
         var node1: String = "123"
         var node2: Int = 19
     }
@@ -53,10 +53,10 @@ fun main(args: Array<String>) {
     //object classes properties can call this way (like static)
     println("${SampleObject.foo()} and the lenght of retun ${SampleObject.lenghtOfFooReturn}")
 
-    val myClassInstance = MyClass.create()
+    val myClassInstance = MyClass2.create()
     println(myClassInstance.myClassSingleRefId)
 
-    val myClassInstance2 = MyClass.create()
+    val myClassInstance2 = MyClass2.create()
     println(myClassInstance2.myClassSingleRefId)
 
 }

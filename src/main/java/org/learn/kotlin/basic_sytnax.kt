@@ -1,14 +1,15 @@
 package org.learn.kotlin
 
 /** Defining Functions*/
-
 fun sum(a: Int, b: Int): Int = a + b
 
 /** Function with an expression body and inferred return type*/
-fun subtraction(a: Int, b: Int): Int? = if (a < 0 || b < 0) null else a - b
+fun subtraction(a: Int?, b: Int?): Int? = if (a == null || b == null) null else a - b
 
 /** Function returning no meaningful value*/
-fun printSum(a: Int, b: Int) = println("sum of $a and $b is ${a + b}")
+fun printSum(a: Int, b: Int): Unit {
+    println("sum of $a and $b is ${a + b}")
+}
 
 
 /* Using conditional expression */
@@ -30,8 +31,9 @@ fun printProduct(arg1: String, arg2: String) {
 }
 
 
-fun getStringLength(obj: Any): Int? = if (obj !is String) null else obj.length
-
+fun getStringLength(obj: Any): Int? {
+    return (obj as String).length
+}
 
 fun main(args: Array<String>) {
     val arg1 = 5 //means constant
@@ -43,7 +45,7 @@ fun main(args: Array<String>) {
     println("Substraction of values $arg2 and $arg1 is ${substractionResult ?: "sadasda"}")
     printSum(5, 6)
 
-    // expression ?: value --> means if expression is null return value,but
+    // "expression ?: value" --> means if expression is null return value,but
     // if expression is not null return expression.
 
     var a: Any = 1 //immediate assignment
@@ -66,9 +68,11 @@ fun main(args: Array<String>) {
     printProduct("a", "7")
 
 
-    fun printLength(obj: Any) {
+    val printLength = fun(obj: Any) { //define function as a variable.
         println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")
     }
+
+    val printLength2 = { obj: Any -> println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")}
 
     printLength("Incomprehensibilities")
     printLength(1000)
@@ -91,14 +95,16 @@ fun main(args: Array<String>) {
 
     val x = 10
     val y = 9
+
     if (x in 1..y + 1) println("fits in range")
 
     if (-1 !in 0..fruits.lastIndex) {
         println("-1 is out of range")
     }
 
-    for (x in 1..10 step 2) { // 2 şer artarak yazar.
-        println(x)
+    (1..10 step 2).withIndex().forEach { (i, x) ->
+        // 2 şer artarak yazar.
+        println("$i. eleman $x 'tir.")
     }
 
 

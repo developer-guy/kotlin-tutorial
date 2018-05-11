@@ -1,6 +1,6 @@
 package org.learn.kotlin
 
-interface MyInterface { //içerisindeki function veya fieldlar default olarak open tanımlı.
+interface Parent { //içerisindeki function veya fieldlar default olarak open tanımlı.
     val prop: Int //abstract
 
     val propertyWithImpl: String
@@ -13,7 +13,7 @@ interface MyInterface { //içerisindeki function veya fieldlar default olarak op
 }
 
 
-class Child : MyInterface {
+class Child : Parent {
     override val prop: Int
         get() = "123".toInt()
 

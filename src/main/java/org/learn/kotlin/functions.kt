@@ -65,6 +65,7 @@ fun printHello(name: String?): Unit { //unit returning function
 // `return Unit` or `return` is optional
 
 
+// generic function
 fun <T> asList(vararg numbers: T): List<T> {
     val result = ArrayList<T>()
     result += numbers

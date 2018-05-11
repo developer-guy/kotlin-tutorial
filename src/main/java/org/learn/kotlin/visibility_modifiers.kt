@@ -9,7 +9,7 @@ public var vb_bar: Int = 5
 // bu dosya içerisinden atama yapılabilir
     private set
 
-internal val baz = 6 // aynı module içerisinde gözükür.
+internal val baz = 6 // aynı paket içerisinde gözükür.
 
 open class Outer {
     private val a = 1

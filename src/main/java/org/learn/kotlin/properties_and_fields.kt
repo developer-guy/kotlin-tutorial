@@ -14,9 +14,9 @@ class Address {
             if (value.length >= 5) field = value
         }
     var state: String? = ""
-        get() = this.toString()
-        set(value) {
-            if (this.size >= 0) field = value
+        get() = field.toString()
+        set(x) {
+            if (this.size >= 0) field = x
         }
     var zip: String = ""
 
