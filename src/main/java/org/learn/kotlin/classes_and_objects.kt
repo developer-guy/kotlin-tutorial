@@ -22,4 +22,6 @@ fun main(args: Array<String>) {
     println("Area of rectangle is ${rectangle.calculateArea()}, " +
             "its perimeter is ${rectangle.perimeter}")
 
+    members<Rectangle>()
+
 }

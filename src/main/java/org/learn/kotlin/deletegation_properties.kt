@@ -3,14 +3,17 @@ package org.learn.kotlin
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
+
+// custom delegation
 class Example {
-    var p: String by Delegate()
+    var p: String by Delegate("10")
 }
 
-class Delegate {
+class Delegate constructor(private val default: Any) {
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
-        return "$thisRef, thank you for delegating '${property.name}' to me!"
+        println("$thisRef, thank you for delegating '${property.name}' to me!")
+        return default as String
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {

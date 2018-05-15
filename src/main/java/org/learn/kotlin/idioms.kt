@@ -3,8 +3,17 @@ package org.learn.kotlin
 import java.io.File as javaioFile
 
 /* data : provides a functionally to class for example equals,hashCode,copy,toString,componentN functions for all properties etc. */
-data class Customer constructor(val name: String, val email: String) {
+data class Customer constructor(val name: String, val email: String)
 
+
+class RelationShip constructor(val name: String, val timeToSpend: Int) {
+    fun makePeace() {
+        println("Making peace")
+    }
+
+    fun beOffended() {
+        println("Making offended")
+    }
 }
 
 fun main(args: Array<String>) {

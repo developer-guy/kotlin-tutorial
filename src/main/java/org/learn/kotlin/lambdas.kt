@@ -81,28 +81,9 @@ fun main(args: Array<String>) {
         body()   // lambda with receiver begins here
         // calling a method on the receiver object
     }
-
-    val sampleDesign = sampleDesign {
-        sayMyName("XX")
-    }
-
-    println(sampleDesign)
 }
 
 infix fun Int.sum3(other: Int): Int = this + other
-
-
-class Sample {
-
-    fun sayMyName(s: String): Int = s.length
-
-}
-
-fun sampleDesign(func: Sample.() -> Int): Int {
-    val sample = Sample()
-    val func1 = sample.func()
-    return func1
-}
 
 
 // High order functions means take a function as parameter or return function.

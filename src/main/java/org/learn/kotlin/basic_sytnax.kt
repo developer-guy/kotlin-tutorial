@@ -31,8 +31,28 @@ fun printProduct(arg1: String, arg2: String) {
 }
 
 
-fun getStringLength(obj: Any): Int? {
-    return (obj as String).length
+fun getStringLength(obj: Any?): Int? {
+    return obj?.let {
+        // execute this block if not null
+        return if (it is String) { // type  kontrolü
+            (it as String).length
+            // burada as operatorü ile cast işlemi yapmamıza gerek yok çünkü yukarıda is kontrolü
+            // ile type kontrolü yaptığımız için kotlin compile time da bu blokta bunun string olarak davranacağını anlıyor.
+        } else {
+            null
+        }
+    }
+}
+
+
+infix fun Int.inn(range: IntRange): Boolean {
+    var index = -1
+    for ((i, v) in range.iterator().withIndex()) {
+        if (this == v) {
+            index = i
+        }
+    }
+    return index != -1
 }
 
 fun main(args: Array<String>) {

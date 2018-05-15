@@ -73,7 +73,7 @@ fun <T> asList(vararg numbers: T): List<T> {
 }
 
 
-// define extension to Int
+// define extension to Int with infix function.
 infix fun Int.double(x: Int): Int {
     return x * 2
 }
