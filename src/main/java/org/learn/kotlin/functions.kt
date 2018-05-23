@@ -1,6 +1,22 @@
 package org.learn.kotlin
 
+import java.util.Arrays.asList
+
 fun doubleIt(x: Int): Int = x * 2
+
+
+class Gift {
+    infix fun buy(present: String) {
+        println("Buying $present")
+    }
+}
+
+
+fun makeItHappen(makeitHappen: (Gift) -> Unit) {
+    val gift = Gift()
+    makeitHappen(gift)
+}
+
 
 fun main(args: Array<String>) {
     val result = doubleIt(x = 2)
@@ -24,6 +40,11 @@ fun main(args: Array<String>) {
 
 
     println(lock(body = { x -> x * 2 }))
+
+    makeItHappen {
+        it buy "Car"
+        it buy "House"
+    }
 }
 
 fun innerMethod(s: String, y: Int) {
