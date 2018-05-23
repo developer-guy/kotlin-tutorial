@@ -108,6 +108,15 @@ fun main(args: Array<String>) {
     }
 
     println("$name length is $count")
+
+
+    val relationShip = RelationShip("asena&batuhan", 3)
+
+    with(relationShip) {
+        beOffended()
+        makePeace()
+    }
+
 }
 
 fun count(str: String?): Int {

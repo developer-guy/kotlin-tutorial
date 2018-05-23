@@ -65,7 +65,7 @@ fun main(args: Array<String>) {
 
 
     val rePresent: Int.(String) -> Boolean = fun Int.(s: String): Boolean {
-        return s.toInt().equals(this)
+        return s.toInt() == this
     }
 
     fun execute(s: String, intFunc: Int.(s: String) -> Boolean, i: Int) {
