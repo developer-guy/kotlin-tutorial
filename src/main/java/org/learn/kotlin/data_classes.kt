@@ -24,7 +24,18 @@ enum class Gender {
     }
 }
 
+
+inline fun <reified E : Enum<E>> getAllValuesFromEnum(): List<E> {
+    return enumValues<E>().asList()
+}
+
 fun main(args: Array<String>) {
+
+    println("Genders")
+    getAllValuesFromEnum<Gender>().forEach { it ->
+        println("Gender : $it")
+    }
+
     val user = User()
     println("Original user $user")
 

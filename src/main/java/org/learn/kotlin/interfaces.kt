@@ -1,12 +1,13 @@
 package org.learn.kotlin
 
 interface Parent { //içerisindeki function veya fieldlar default olarak open tanımlı.
-    val prop: Int //abstract
+    val prop: Int //abstract - needs to be implement
+
+    fun bar() // needs to be implement
 
     val propertyWithImpl: String
         get() = "foo"
 
-    fun bar()
     fun foo() {
         print(prop)
     }

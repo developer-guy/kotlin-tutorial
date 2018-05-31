@@ -15,7 +15,7 @@ enum class ProtocolState {
     abstract fun signal(): String
 }
 
-enum class Color constructor(val rgb: Int) {
+enum class Color(val rgb: Int) {
     RED(rgb = 0xFF0000) {
         override fun sayIam(): Int {
             return this.rgb

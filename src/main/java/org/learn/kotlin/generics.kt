@@ -17,10 +17,21 @@ fun main(args: Array<String>) {
     println("Box value ${box2.value}")
 
     val numbers: Array<Int> = arrayOf(1, 2, 3, 4, 5)
+
     val copyNumbers: Array<Number> = copy(numbers)
     println("3.index number in copy numbers: ${copyNumbers[3]}")
 
     copy2(copyNumbers)
+
+
+    1.convertToString()
+    "a".convertToString()
+    1.0.convertToString()
+
+    singletonList(1.0, 1, "a")
+
+    sort(listOf(1, 2, 3))
+
 }
 
 fun copy2(arr: Array<in Int>) { // in Int means -->  ? super Int
@@ -34,15 +45,6 @@ fun copy(from: Array<out Any>): Array<Number> { // out Any means --> ? extends A
         to[i] = v as Int // type casting
     }
     println("Copy finished: ${LocalDateTime.now()}")
-
-
-    1.convertToString()
-    "a".convertToString()
-    1.0.convertToString()
-
-    singletonList(1.0,1,"a")
-
-    sort(listOf(1, 2, 3))
 
 
     return to

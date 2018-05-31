@@ -2,7 +2,7 @@ package org.learn.kotlin
 
 import java.util.Arrays.asList
 
-fun doubleIt(x: Int): Int = x * 2
+private fun operation(x: Int): Int = x * 2
 
 
 class Gift {
@@ -19,22 +19,28 @@ fun makeItHappen(makeitHappen: (Gift) -> Unit) {
 
 
 fun main(args: Array<String>) {
-    val result = doubleIt(x = 2)
+    val result = operation(x = 2)
     println("$result")
     // Sample().foo() // Sample sınıfından bir instance üretilip foo methodunun çağrımı
 
 
     foo(1, 3, ::innerMethod)  // Uses the default value baz = 1
+
     foo { s, y -> println("hello") }// Uses both default values bar = 0 and baz = 1
 
     reformat(str = "a") //named argument
 
     variableArgs(numbers = *intArrayOf(1, 2, 3))  // variadic function example with spread operator
+
     variableArgs(1, 2, 3, 4, 5, 6) // variadic function example
 
     val numbers: List<Int> = asList(1, 2, 3, 4, 5, 6)
+
     var printFunction = { number: Int -> println(number) } // lambda function always be inside curly braces
+
     numbers.forEach(printFunction)
+
+    numbers.forEach(::println)
 
     1 double 2
 
@@ -95,7 +101,7 @@ fun <T> asList(vararg numbers: T): List<T> {
 
 
 // define extension to Int with infix function.
-infix fun Int.double(x: Int): Int {
+internal infix fun Int.double(x: Int): Int {
     return x * 2
 }
 

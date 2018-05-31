@@ -5,12 +5,13 @@ package org.learn.kotlin
  */
 
 
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION,
-        AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.EXPRESSION)
+@Target(AnnotationTarget.CLASS,
+        AnnotationTarget.FUNCTION,
+        AnnotationTarget.VALUE_PARAMETER,
+        AnnotationTarget.EXPRESSION)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
-annotation class Fancy(val why: String) {
-}
+annotation class Fancy(val why: String)
 
 
 @Fancy("example")

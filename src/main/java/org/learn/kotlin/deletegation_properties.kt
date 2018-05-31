@@ -58,6 +58,7 @@ fun main(args: Array<String>) {
     println(user.name) // Prints "John Doe"
     println(user.age)
     println(user.gender)
-
 }
+
+
 

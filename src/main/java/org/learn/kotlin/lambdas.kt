@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
 
     val ints = listOf(1, 2, 3, 4, 5)
 
-    val map: List<Double> = ints.map { i -> i.toDouble() }
+    val doubledInts: List<Double> = ints.map { i -> i.toDouble() }
 
     //only avaliable if that function takes one argument ,
     // implicit name of a single parameter
@@ -57,30 +57,35 @@ fun main(args: Array<String>) {
     // { other -> this + other } şeklinde de tanımlanabilirdi.
     val sum2: Int.(Int) -> Int = fun Int.(other: Int) = this + other
 
-    val represent: String.(Int) -> Boolean = { other -> this.toIntOrNull() == other }
-
-    println(1.sum2(1))
+    println(1.sum2(5))
 
     println(1 sum3 5)
 
+//    val represent: String.(Int) -> Boolean = { other -> this.toIntOrNull() == other }
 
     val rePresent: Int.(String) -> Boolean = fun Int.(s: String): Boolean {
         return s.toInt() == this
     }
 
-    fun execute(s: String, intFunc: Int.(s: String) -> Boolean, i: Int) {
-        i.intFunc(s)
-    }
-
-    execute("123", rePresent, 123)
-
-
-    println("123".represent(123))
+//    println(15.rePresent("15"))
+//    println("123".represent(123))
 
     html {
-        body()   // lambda with receiver begins here
+        this.body()   // lambda with receiver begins here
         // calling a method on the receiver object
+        this.head() //'this' can be omit
     }
+
+    val doubleIt = operation { e1, e2 ->
+        this + e1 + e2
+    }
+    println("Selam $doubleIt")
+}
+
+
+fun operation(operate: Int.(Int, Int) -> Int): Int {
+    val result = 0
+    return result.operate(5, 6)
 }
 
 infix fun Int.sum3(other: Int): Int = this + other
@@ -110,10 +115,14 @@ class HTML {
     fun body(): String {
         return "I am receiver's method"
     }
+
+    fun head(): String {
+        return "I am receiver's method to"
+    }
 }
 
 
-fun html(init: HTML.() -> String): HTML {
+fun html(init: HTML.() -> Unit): HTML {
     val html = HTML()
     println(html.init())
     return html

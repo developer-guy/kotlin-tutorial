@@ -8,7 +8,11 @@ fun main(args: Array<String>) {
     //First way to iterate on array
     val lenghOfArray = ints.size
 
-    for (i in 0 until lenghOfArray) {
+    for (i in 0..lenghOfArray) { // lengthOfArray in
+        println("Index $i value at index ${ints[i]}")
+    }
+
+    for (i in 0 until lenghOfArray) { // lengthOfArray not in
         println("Index $i value at index ${ints[i]}")
     }
 

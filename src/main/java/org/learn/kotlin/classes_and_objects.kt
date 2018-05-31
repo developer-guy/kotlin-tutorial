@@ -11,13 +11,22 @@ interface RectangleProperties {
 
 inline fun <reified T> members() = T::class.members
 
-class Rectangle internal constructor(private var height: Double, private var length: Double) :
-        Shape(listOf(height, length)), RectangleProperties {
-    override fun calculateArea(): Double = height * length
+class Rectangle internal constructor(private var height: Double, private var length: Double)
+    : Shape(listOf(height, length)),
+        RectangleProperties {
 
-    override val isSquare: Boolean = length == height
+    override fun calculateArea(): Double = if (!isSquare) height * length else (-1).toDouble()
+
+    override val isSquare: Boolean
+        get() {
+            if (length == height) {
+                throw AssertionError("rectangle height and length must be different from each other.")
+            }
+            return length == height
+        }
 
 }
+
 
 fun main(args: Array<String>) {
     val rectangle = Rectangle(5.0, 2.0)

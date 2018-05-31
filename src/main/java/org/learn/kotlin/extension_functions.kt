@@ -2,16 +2,16 @@ package org.learn.kotlin
 
 import java.util.*
 
-fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
-    val tmp = this.get(index1) // veya this[index1]   //burada this kelimesi mutablelist'e tekabül eder.
+private fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
+    val tmp = this[index1] // veya get(index1)   //burada this kelimesi mutablelist'e tekabül eder.
     this[index1] = this[index2]
     this[index2] = tmp
     return this
 }
 
-val <T> MutableList<T>.lastIndex: Int get() = this.size - 1
+val <T> MutableList<T>?.lastIndex: Int get() = this!!.size - 1
 
-val <T> MutableList<T>.lastElement: T get() = this.get(this.lastIndex)
+val <T> MutableList<T>.lastElement: T get() = this[this.lastIndex]
 
 //Nullable Receiver
 fun Any?.toString(): String = if (Objects.isNull(this)) "null" else toString()
@@ -22,9 +22,9 @@ fun main(args: Array<String>) {
 
     mutableList = mutableList.filterNulls()
 
-    var lastIndex = mutableList.lastIndex
+    val lastIndex = mutableList.lastIndex
 
-    var lastElement = mutableList.lastElement
+    val lastElement = mutableList.lastElement
 
     println("lastElement in list: $lastElement")
 

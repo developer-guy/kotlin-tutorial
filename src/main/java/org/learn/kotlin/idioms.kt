@@ -1,8 +1,10 @@
 package org.learn.kotlin
 
+import kotlin.properties.Delegates
 import java.io.File as javaioFile
 
-/* data : provides a functionally to class for example equals,hashCode,copy,toString,componentN functions for all properties etc. */
+/* data : provides a functionally to class
+for example equals,hashCode,copy,toString,componentN functions for all properties etc. */
 data class Customer constructor(val name: String, val email: String)
 
 
@@ -14,6 +16,11 @@ class RelationShip constructor(val name: String, val timeToSpend: Int) {
     fun beOffended() {
         println("Making offended")
     }
+}
+
+
+class RestTemplate(val rootUri: String) {
+    constructor() : this("")
 }
 
 fun main(args: Array<String>) {
@@ -34,8 +41,8 @@ fun main(args: Array<String>) {
     val s: Any = true
 
     val result = when (s) {
-        is String -> "Evet bu bir string"
-        is Long -> "Evet bu bir long"
+        is String -> "Evet bu bir string uzunluk :${s.length}"
+        is Long -> "Evet bu bir long : ${s + 10}"
         else -> "Bilmiyoz"
     }
 
@@ -52,8 +59,18 @@ fun main(args: Array<String>) {
 
     // val p : String  by lazy {}
 
+    var restTemplate by Delegates.observable(RestTemplate(),
+            onChange = { _, oldValue, newValue ->
+                println("Goes from ${oldValue.rootUri} to ${newValue.rootUri}")
+
+            })
+
+    restTemplate = RestTemplate("https://www.google.com")
+
     val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+
     val i = map["a"]
+
     println("Key a value is : $i")
 
     name.spaceToCamelCase()

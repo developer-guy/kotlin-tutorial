@@ -19,8 +19,8 @@ fun parseInt(str: String): Int? = str.toIntOrNull()
 
 
 fun printProduct(arg1: String, arg2: String) {
-    val x = parseInt(arg1)
-    val y = parseInt(arg2)
+    val x: Int? = parseInt(arg1)
+    val y: Int? = parseInt(arg2)
 
 
     if (x != null && y != null) {
@@ -88,14 +88,18 @@ fun main(args: Array<String>) {
     printProduct("a", "7")
 
 
-    val printLength = fun(obj: Any) { //define function as a variable.
+    //define function as a variable.
+    val printLength = fun(obj: Any) {
         println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")
     }
 
-    val printLength2 = { obj: Any -> println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")}
+    // lambda expression
+    val printLength2 = { obj: Any ->
+        println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")
+    }
 
     printLength("Incomprehensibilities")
-    printLength(1000)
+    printLength2(1000)
 
 
     val fruits: List<String> = listOf("apple", "banane", "kiwi")

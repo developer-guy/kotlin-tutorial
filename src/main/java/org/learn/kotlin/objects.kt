@@ -16,9 +16,7 @@ open class ClassOne(x: Int) {
     open val y: Int = x
 }
 
-interface InterfaceOne {
-
-}
+interface InterfaceOne
 
 interface Factory<T> {
     fun create(): T
