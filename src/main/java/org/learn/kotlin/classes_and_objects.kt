@@ -11,7 +11,11 @@ interface RectangleProperties {
 
 inline fun <reified T : Any> members() = T::class.members
 
+<<<<<<< HEAD
 class Rectangle internal constructor(var height: Double, var length: Double)
+=======
+class Rectangle internal constructor(private var height: Double, private var length: Double)
+>>>>>>>  This is the 1st commit message:
     : Shape(listOf(height, length)),
         RectangleProperties {
 

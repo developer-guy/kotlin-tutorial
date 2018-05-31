@@ -26,6 +26,7 @@ inline fun <reified E : Enum<E>> getAllValuesFromEnum(print: (E) -> Unit) {
     return enumValues<E>()
             .asList()
             .forEach(print)
+<<<<<<< HEAD
 }
 
 
@@ -48,11 +49,14 @@ fun computerOperator(operation: Computer.() -> Unit): Unit {
 
     computer.operation()
 
+=======
+>>>>>>>  This is the 1st commit message:
 }
 
 
 fun main(args: Array<String>) {
 
+<<<<<<< HEAD
 
     computerOperator {
         start()
@@ -72,6 +76,8 @@ fun main(args: Array<String>) {
     }
 
 
+=======
+>>>>>>>  This is the 1st commit message:
     println("Genders")
     val lazyOf = lazyOf(getAllValuesFromEnum<Gender> {
         println("Gender $it")
