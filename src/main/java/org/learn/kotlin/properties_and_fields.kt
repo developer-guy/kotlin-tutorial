@@ -1,12 +1,5 @@
 package org.learn.kotlin
 
-const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
-
-
-class InnerAddress constructor(val name: String) {
-
-}
-
 class Address {
     var size = 0
     var name: String = ""

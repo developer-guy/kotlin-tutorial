@@ -37,10 +37,10 @@ fun getStringLength(obj: Any?): Int? {
         return if (it is String) { // type  kontrolü
             (it as String).length
             // burada as operatorü ile cast işlemi yapmamıza gerek yok çünkü yukarıda is kontrolü
-            // ile type kontrolü yaptığımız için kotlin compile time da bu blokta bunun string olarak davranacağını anlıyor.
-        } else {
+            // ile type kontrolü yaptığımız için kotlin compile
+            // time da bu blok içerisinde değişkenin bir string olarak davranması gerektiğinih anlıyor.
+        } else
             null
-        }
     }
 }
 
@@ -68,7 +68,7 @@ fun main(args: Array<String>) {
     // "expression ?: value" --> means if expression is null return value,but
     // if expression is not null return expression.
 
-    var a: Any = 1 //immediate assignment
+    var a: Any = 1 //immediate assignment -- Any is super-type of every type.
     val b = 2 //Int type is inferred
     val c: Int // Type required when no initializer is provided
     c = 3
@@ -89,7 +89,7 @@ fun main(args: Array<String>) {
 
 
     //define function as a variable.
-    val printLength = fun(obj: Any) {
+    val printLength = fun(obj: Any): Unit {
         println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")
     }
 

@@ -3,8 +3,6 @@ package org.learn.kotlin
 /**
  * @author Batuhan Apaydın
  */
-
-
 @Target(AnnotationTarget.CLASS,
         AnnotationTarget.FUNCTION,
         AnnotationTarget.VALUE_PARAMETER,

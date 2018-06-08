@@ -7,12 +7,9 @@ import kotlin.reflect.KClass
  */
 
 
-class Reflection constructor(val reflectionProp: Int) {
-}
+class Reflection constructor(val reflectionProp: Int)
 
-class Reflection2 constructor() {
-
-}
+class Reflection2
 
 val qert = 1
 var qert2 = 1

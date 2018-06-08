@@ -5,13 +5,21 @@ package org.learn.kotlin
   */
 
 class V { //implicit label @V
+    private val classVName: String? = V::class.simpleName
+
     inner class Q { //implicit label @Q
-        fun Int.foo() { //implicit label @foo
-            val a = this@V
-            val b = this@Q
+        private val classQName: String? = Q::class.simpleName
+        fun Int.intval() { //implicit label @foo
+            val a = this@V.classVName
+            val b = this@Q.classQName
+
+            println(a)
+            println(b)
 
 
-            val c = this@foo
+            val c = this@intval
+
+            println("What is my type : ${c.javaClass.typeName}")
         }
     }
 }

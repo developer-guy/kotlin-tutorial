@@ -3,7 +3,6 @@ package org.learn.kotlin
 import java.util.logging.Logger
 
 //kotlindeki tüm sınıfların süper sınıfı "Any"'dir.
-
 val logger: Logger = Logger.getLogger("Person")
 
 open class Human constructor(val name: String) {

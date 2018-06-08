@@ -38,10 +38,12 @@ fun main(args: Array<String>) {
 
     val lazyVal: String by lazy(mode = LazyThreadSafetyMode.NONE, initializer = { "Init" })
 
-    val delegetaesObservable = { _: KProperty<*>, oldValue: String, newValue: String -> println("$oldValue -> $newValue") }
+    val delegetaesObservable =
+            { _: KProperty<*>, oldValue: String, newValue: String -> println("$oldValue -> $newValue") }
 
 
-    var observableVal: String by Delegates.observable("<no-name>", onChange = delegetaesObservable)
+    var observableVal: String by Delegates.observable("<no-name>",
+            onChange = delegetaesObservable)
 
     observableVal = "10"
     observableVal = "20"
@@ -50,10 +52,6 @@ fun main(args: Array<String>) {
             "name" to "John Doe",
             "age" to 20
     ))
-
-    mapOf("age" to 21, "name" to 123)
-
-    val pair = Pair("1", 1)
 
     println(user.name) // Prints "John Doe"
     println(user.age)

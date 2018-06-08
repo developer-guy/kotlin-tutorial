@@ -36,7 +36,8 @@ fun main(args: Array<String>) {
 
     val numbers: List<Int> = asList(1, 2, 3, 4, 5, 6)
 
-    var printFunction = { number: Int -> println(number) } // lambda function always be inside curly braces
+    var printFunction = { number: Int -> println(number) }
+    // lambda function always be inside curly braces
 
     numbers.forEach(printFunction)
 
@@ -57,7 +58,6 @@ fun innerMethod(s: String, y: Int) {
     println(s + y)
 }
 
-
 fun powerOf(number: Int, exponent: Int) {
 
 }
@@ -65,7 +65,6 @@ fun powerOf(number: Int, exponent: Int) {
 interface k {
 
 }
-
 
 fun defaultArguments(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
 }
@@ -80,7 +79,6 @@ fun reformat(str: String,
 
 }
 
-
 fun variableArgs(vararg numbers: Int) {} //variadic function
 
 fun printHello(name: String?): Unit { //unit returning function
@@ -91,7 +89,6 @@ fun printHello(name: String?): Unit { //unit returning function
 }
 // `return Unit` or `return` is optional
 
-
 // generic function
 fun <T> asList(vararg numbers: T): List<T> {
     val result = ArrayList<T>()
@@ -99,12 +96,10 @@ fun <T> asList(vararg numbers: T): List<T> {
     return result
 }
 
-
 // define extension to Int with infix function.
-internal infix fun Int.double(x: Int): Int {
+infix fun Int.double(x: Int): Int {
     return x * 2
 }
-
 
 // High order functions means takes functions as a parameter
 fun <T> lock(body: (x: Int) -> T): T {

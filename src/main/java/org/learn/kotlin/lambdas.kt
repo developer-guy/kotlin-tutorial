@@ -57,6 +57,14 @@ fun main(args: Array<String>) {
     // { other -> this + other } şeklinde de tanımlanabilirdi.
     val sum2: Int.(Int) -> Int = fun Int.(other: Int) = this + other
 
+    val sum5: Int.(Int) -> Int = { valid: Int ->
+        val result = this + valid
+        result
+
+    }
+
+    println(1.sum5(10))
+
     println(1.sum2(5))
 
     println(1 sum3 5)

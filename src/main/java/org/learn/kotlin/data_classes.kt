@@ -1,19 +1,22 @@
 package org.learn.kotlin
 
 data class User constructor(val name: String = "Batuhan",
-                            val age: Int = 10,
+                            val age: Int = 20,
                             val gender: Gender = Gender.MALE) {
+
     companion object {
-        fun of(name: String, age: Int, gender: Gender): User = User(name, age, gender)
+        internal fun of(name: String,
+                        age: Int,
+                        gender: Gender): User = User(name, age, gender)
     }
 }
-// data keywordü sınıfa otomatik olarak hashCode(),toString(),equals(),copy(),componentN methodlarını ekler.
 
+// data keywordü sınıfa otomatik olarak hashCode(),toString(),equals(),copy(),componentN methodlarını ekler.
 enum class Gender {
     MALE,
     FEMALE;
 
-    companion object {
+    companion object GenderFactory {
         fun of(s: String): Gender {
             val sUpper = s.toUpperCase()
             if (MALE.name == sUpper) {
@@ -39,7 +42,11 @@ fun main(args: Array<String>) {
     val user = User()
     println("Original user $user")
 
-    val cpUser = user.copy(name = "Asena", age = 20, gender = Gender.of("female"))
+    val cpUser = user.copy(
+            name = "Asena",
+            age = 20,
+            gender = Gender.of("female")
+    )
 
     println("Copy user $cpUser")
 
@@ -57,7 +64,8 @@ fun main(args: Array<String>) {
 
 
     // destructuring example with method return.
-    val (name1, age2, gender3) = User.of(name = "Asena", age = 19, gender = Gender.of("female"))
+    val (name1, age2, gender3) =
+            User.of(name = "Asena", age = 19, gender = Gender.of("female"))
 
     execute { (name, age, gender) -> println("User infos name: $name , age $age , gender $gender") }
 }

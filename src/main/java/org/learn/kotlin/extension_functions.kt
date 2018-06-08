@@ -3,7 +3,7 @@ package org.learn.kotlin
 import java.util.*
 
 private fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
-    val tmp = this[index1] // veya get(index1)   //burada this kelimesi mutablelist'e tekabül eder.
+    val tmp = this[index1] // veya get(index1) //burada this kelimesi mutablelist'e tekabül eder.
     this[index1] = this[index2]
     this[index2] = tmp
     return this

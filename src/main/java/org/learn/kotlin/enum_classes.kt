@@ -16,7 +16,7 @@ enum class ProtocolState {
 }
 
 enum class Color(val rgb: Int) {
-    RED(rgb = 0xFF0000) {
+    RED(0xFF0000) {
         override fun sayIam(): Int {
             return this.rgb
         }

@@ -12,8 +12,7 @@ interface RectangleProperties {
 inline fun <reified T> members() = T::class.members
 
 class Rectangle internal constructor(private var height: Double, private var length: Double)
-    : Shape(listOf(height, length)),
-        RectangleProperties {
+    : Shape(listOf(height, length)), RectangleProperties {
 
     override fun calculateArea(): Double = if (!isSquare) height * length else (-1).toDouble()
 

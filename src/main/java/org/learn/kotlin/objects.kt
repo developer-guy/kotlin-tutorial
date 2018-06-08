@@ -41,12 +41,12 @@ fun main(args: Array<String>) {
 
     println(jsonObject.node1.toInt() + jsonObject.node2)
 
-    val ab: ClassOne = object : ClassOne(1), InterfaceOne {
+    val abObject: ClassOne = object : ClassOne(1), InterfaceOne {
         override val y: Int
             get() = 12
     }
 
-    println(ab.y)
+    println(abObject.y)
 
     //object classes properties can call this way (like static)
     println("${SampleObject.foo()} and the lenght of retun ${SampleObject.lenghtOfFooReturn}")
