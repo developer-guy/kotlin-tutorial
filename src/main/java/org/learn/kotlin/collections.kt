@@ -37,6 +37,28 @@ fun main(args: Array<String>) {
     val mutableListWithOutNull = mutableListWithNull.filterNulls()
 
     mutableListWithOutNull.forEach { println(it) }
+
+
+    val sampleList = mutableListOf(1, 2, 3, 4, 5, 6, 7)
+
+    sampleList.filter { it > 5 }
+
+    sampleList.forEach(::println)
+}
+
+fun <T> MutableList<T>.filter(predicate: (T) -> Boolean) {
+    val blackList = mutableListOf<T>()
+
+    for (item in this) {
+        if (!predicate(item)) {
+            println("Item $item adding to blacklist.")
+            blackList.add(item)
+        }
+    }
+
+    println("Blacklist contains : $blackList .")
+
+    this.removeAll(blackList)
 }
 
 

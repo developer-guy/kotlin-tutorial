@@ -45,7 +45,7 @@ fun getStringLength(obj: Any?): Int? {
 }
 
 
-infix fun Int.inn(range: IntRange): Boolean {
+infix fun Int.inx(range: IntRange): Boolean {
     var index = -1
     for ((i, v) in range.iterator().withIndex()) {
         if (this == v) {
@@ -55,7 +55,21 @@ infix fun Int.inn(range: IntRange): Boolean {
     return index != -1
 }
 
+/*
+
+inline fun <reified T: Any> runApplication(vararg args: String,instance : T.() -> Unit){
+    val kClass = T::class
+    SpringApplicatipon.run(kClass,args)
+    return T
+}
+*/
+
+
+
 fun main(args: Array<String>) {
+
+//    runApplication<BlogApplication>(*args)
+
     val arg1 = 5 //means constant
     val arg2 = 6
     val additionResult: Int = sum(arg1, arg2)
@@ -93,6 +107,9 @@ fun main(args: Array<String>) {
         println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")
     }
 
+    //   ?: --> elvis operator
+    //   ? --> nullable operator
+    //   !! --> not null assertion operator, converts any value to a non-null type and throws an exception.
     // lambda expression
     val printLength2 = { obj: Any ->
         println("'$obj' string length is ${getStringLength(obj) ?: "... err, is empty or not a string at all"} ")

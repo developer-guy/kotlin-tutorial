@@ -4,6 +4,15 @@ import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
 
+/*
+*
+* - lazy properties: the value gets computed only upon first access.
+* - observable properties: listeners get notified about changes to this property.
+* - storing properties in a map, instead of a separate field for each property.
+*
+* */
+
+
 // custom delegation
 class Example {
     var p: String by Delegate("10")
@@ -56,7 +65,10 @@ fun main(args: Array<String>) {
     println(user.name) // Prints "John Doe"
     println(user.age)
     println(user.gender)
+
 }
+
+
 
 
 

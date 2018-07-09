@@ -9,9 +9,11 @@ private fun <T> MutableList<T>.swap(index1: Int, index2: Int): MutableList<T> {
     return this
 }
 
+val Int.representAsString: String get(): String = this.toString()
+
 val <T> MutableList<T>?.lastIndex: Int get() = this!!.size - 1
 
-val <T> MutableList<T>.lastElement: T get() = this[this.lastIndex]
+val <T> MutableList<T>.lastElement: T get() = this.get(this.lastIndex) // this[this.lastIndex] şeklinde de yazılabilir.
 
 //Nullable Receiver
 fun Any?.toString(): String = if (Objects.isNull(this)) "null" else toString()

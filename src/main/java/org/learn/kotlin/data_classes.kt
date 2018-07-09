@@ -7,7 +7,7 @@ data class User constructor(val name: String = "Batuhan",
     companion object {
         internal fun of(name: String,
                         age: Int,
-                        gender: Gender): User = User(name, age, gender)
+                        gender: String): User = User(name, age, Gender.of(gender))
     }
 }
 
@@ -17,27 +17,24 @@ enum class Gender {
     FEMALE;
 
     companion object GenderFactory {
-        fun of(s: String): Gender {
-            val sUpper = s.toUpperCase()
-            if (MALE.name == sUpper) {
-                return MALE
-            }
-            return FEMALE
-        }
+        fun of(s: String): Gender = if (MALE.name == s.toUpperCase()) MALE else FEMALE
     }
+
 }
 
-
-inline fun <reified E : Enum<E>> getAllValuesFromEnum(): List<E> {
-    return enumValues<E>().asList()
+inline fun <reified E : Enum<E>> getAllValuesFromEnum(print: (E) -> Unit) {
+    return enumValues<E>()
+            .asList()
+            .forEach(print)
 }
 
 fun main(args: Array<String>) {
 
     println("Genders")
-    getAllValuesFromEnum<Gender>().forEach { it ->
-        println("Gender : $it")
-    }
+    val lazyOf = lazyOf(getAllValuesFromEnum<Gender> {
+        println("Gender $it")
+    })
+
 
     val user = User()
     println("Original user $user")
@@ -65,12 +62,12 @@ fun main(args: Array<String>) {
 
     // destructuring example with method return.
     val (name1, age2, gender3) =
-            User.of(name = "Asena", age = 19, gender = Gender.of("female"))
+            User.of(name = "Asena", age = 19, gender = "female")
 
-    execute { (name, age, gender) -> println("User infos name: $name , age $age , gender $gender") }
+    execute { it -> println("User infos name: ${it.name} , age $it.age , gender $it.gender") }
 }
 
 
-fun execute(describeFunc: (user: User) -> Unit) {
-    describeFunc.invoke(User.of("Batuhan", 23, Gender.of("male")))
+fun execute(func: (user: User) -> Unit) {
+    func.invoke(User.of("Batuhan", 23, "male"))
 }

@@ -41,8 +41,8 @@ fun copy2(arr: Array<in Int>) { // in Int means -->  ? super Int
 fun copy(from: Array<out Any>): Array<Number> { // out Any means --> ? extends Any
     var to: Array<Number> = Array(from.size, { i: Int -> i })
     println("Copy started: ${LocalDateTime.now()}")
-    for ((i, v) in from.withIndex()) {
-        to[i] = v as Int // type casting
+    for ((index, value) in from.withIndex()) {
+        to[index] = value as Int // type casting
     }
     println("Copy finished: ${LocalDateTime.now()}")
 

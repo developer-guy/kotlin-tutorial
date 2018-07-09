@@ -1,5 +1,10 @@
 package org.learn.kotlin
 
+/*
+val simple: Int? // has type Int, default getter, must be initialized in constructor
+val inferredType = 1 // has type Int and a default getter
+*/
+
 class Address {
     var size = 0
     var name: String = ""
@@ -9,7 +14,8 @@ class Address {
     var state: String? = ""
         get() = field.toString()
         set(x) {
-            if (this.size >= 0) field = x
+            if (this.size >= 0) field = x  //This backing field can be referenced
+            // in the accessors using the field identifier:
         }
     var zip: String = ""
 

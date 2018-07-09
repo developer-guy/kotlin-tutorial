@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
 
     reformat(str = "a") //named argument
 
-    variableArgs(numbers = *intArrayOf(1, 2, 3))  // variadic function example with spread operator
+    variableArgs(numbers = *intArrayOf(1, 2, 3))  // variadic function example with "spread" operator
 
     variableArgs(1, 2, 3, 4, 5, 6) // variadic function example
 
@@ -46,13 +46,24 @@ fun main(args: Array<String>) {
     1 double 2
 
 
-    println(lock(body = { x -> x * 2 }))
+    val build = fun(upper: Int.() -> Int): Int {
+        val num = -1
+        return num.upper()
+    }
+
+    build {
+        this double 2
+    }
+
+
+    println(lock(body = { it * 2 }))
 
     makeItHappen {
         it buy "Car"
         it buy "House"
     }
 }
+
 
 fun innerMethod(s: String, y: Int) {
     println(s + y)

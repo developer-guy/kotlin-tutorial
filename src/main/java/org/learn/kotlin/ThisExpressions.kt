@@ -1,9 +1,8 @@
 package org.learn.kotlin
 
 /* To access this from an outer scope (a class, or extension function, or labeled function literal with receiver)
- we write this@label where @label is a label on the scope this is meant to be from:
-  */
-
+ * we write this@label where @label is a label on the scope this is meant to be from:
+ */
 class V { //implicit label @V
     private val classVName: String? = V::class.simpleName
 

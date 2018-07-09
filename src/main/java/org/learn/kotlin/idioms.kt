@@ -99,7 +99,7 @@ fun main(args: Array<String>) {
 
     arrayOf(1, 2, 3, 4, 5)
 
-    val asc: Array<String> = Array(5, { item -> (item * item).toString() })
+    val asc: Array<String> = Array(5) { (it * it).toString() }
 
     val x: IntArray = intArrayOf(1, 2, 3)
 
@@ -131,7 +131,7 @@ fun main(args: Array<String>) {
     val relationShip = RelationShip("asena&batuhan", 3)
 
     with(relationShip) {
-        this.beOffended()
+        this.beOffended() //this keyword can omit.
         this.makePeace()
     }
 

@@ -18,10 +18,19 @@ open class Human constructor(val name: String) {
 }
 
 open class Person constructor(name: String) : Human(name) {
+    /*    The primary constructor cannot contain any code.
+        Initialization code can be placed in initializer blocks, which are prefixed with the "init" keyword.*/
     init {
         logger.info("Super class field name is : ${super.name}")
         logger.info("Person initialized with name $name")
     }
+
+    constructor(name: String, i: Int) : this(name) {
+    }
+
+    constructor(name: String, d: Double) : this(name) {
+    }
+
 
     override val sex: Int
         get() = 5

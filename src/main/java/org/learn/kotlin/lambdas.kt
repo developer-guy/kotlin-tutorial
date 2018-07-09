@@ -11,11 +11,16 @@ fun main(args: Array<String>) {
     lock(lock = ReentrantLock(), body = ::toBeSync)
 
     //more convenient way to pass lambda expression
-    lock(lock = ReentrantLock(), body = { toBeSync() })
+    lock(lock = ReentrantLock(), body = { toBeSync() })   // yerlerini sırasına uygun vermedik çünkü named argument kullandık sırası farklı olabilir.
 
-    lock(lock = ReentrantLock()) {
-        toBeSync()
-    }
+    lock({ "Hello Message" }, lock = ReentrantLock())
+
+    /*  In Kotlin, there is a convention that if the last parameter of a
+      function accepts a function, a lambda expression that is passed as the corresponding argument can be placed outside the parentheses:
+
+      val product = items.fold(1) { acc, e -> acc * e }
+
+      */
 
     val ints = listOf(1, 2, 3, 4, 5)
 
@@ -32,12 +37,11 @@ fun main(args: Array<String>) {
 
     val names = listOf("Batuhan", "Asena", "Mehmet", "Ayşe")
 
-
-    val filterFun = fun(s: String): Boolean {  //anonymous function example
+    val filter = fun(s: String): Boolean {  //anonymous function example
         return s.length >= 5
     }
 
-    names.filter(filterFun)
+    names.filter(filter)
 
     val upperCaseAndLengthGreaterThanFiveNames = names
             .filter { it.length >= 5 }
@@ -55,11 +59,10 @@ fun main(args: Array<String>) {
 
     // Function Literals with Receiver
     // { other -> this + other } şeklinde de tanımlanabilirdi.
-    val sum2: Int.(Int) -> Int = fun Int.(other: Int) = this + other
+    val sum2: Int.(Int) -> Int = fun Int.(other: Int): Int = this + other
 
-    val sum5: Int.(Int) -> Int = { valid: Int ->
-        val result = this + valid
-        result
+    val sum5: Int.(Int) -> Int = sum5@{ valid: Int ->
+        return@sum5 this + valid
 
     }
 
@@ -78,29 +81,38 @@ fun main(args: Array<String>) {
 //    println(15.rePresent("15"))
 //    println("123".represent(123))
 
-    html {
+    val htmlResult = html {
         this.body()   // lambda with receiver begins here
         // calling a method on the receiver object
-        this.head() //'this' can be omit
+        return@html this.head() //'this' can be omit
+
+        /* We can explicitly return a value from the lambda using the qualified return syntax.
+             Otherwise, the value of the last expression is implicitly returned.
+
+            return@filter shouldFilter
+       */
     }
 
-    val doubleIt = operation { e1, e2 ->
-        this + e1 + e2
+    println("Result of html function: $htmlResult")
+
+    val operationResult = operation(5, 6) { e1, e2 ->
+        return@operation this + e1 + e2
     }
-    println("Selam $doubleIt")
+
+    println("Result of operation function $operationResult")
 }
 
 
-fun operation(operate: Int.(Int, Int) -> Int): Int {
+fun operation(firstOperand: Int, secondOperand: Int, operate: Int.(Int, Int) -> Int): Int {
     val result = 0
-    return result.operate(5, 6)
+    return result.operate(firstOperand, secondOperand)
 }
 
 infix fun Int.sum3(other: Int): Int = this + other
 
 
 // High order functions means take a function as parameter or return function.
-fun <T> lock(lock: Lock?, body: () -> T): T {
+fun <T> lock(body: () -> T, lock: Lock?): T {
     lock!!.lock()
     try {
         return body()
@@ -130,8 +142,7 @@ class HTML {
 }
 
 
-fun html(init: HTML.() -> Unit): HTML {
+fun html(init: HTML.() -> String): String {
     val html = HTML()
-    println(html.init())
-    return html
+    return html.init()
 }

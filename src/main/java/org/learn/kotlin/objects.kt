@@ -27,7 +27,7 @@ interface Factory<T> {
 internal class MyClass2 private constructor() {
     val myClassSingleRefId = Math.random()
 
-    companion object : Factory<MyClass2> {     // isim verildi sonra kaldırıldı. eğer factory ismi verilmesiydi MyClass2.Companion diye çağrım yapılacaktı.
+    companion object : Factory<MyClass2> {     // isim verildi sonra kaldırıldı. // eğer factory ismi verilmesiydi MyClass2.Companion diye çağrım yapılacaktı.
         override fun create(): MyClass2 = MyClass2()  //MyClass2.Companion.create()
     }
 }
