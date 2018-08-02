@@ -14,7 +14,13 @@ class Gift {
 
 fun makeItHappen(makeitHappen: (Gift) -> Unit) {
     val gift = Gift()
-    makeitHappen(gift)
+    with(gift) {
+        makeitHappen(this)
+    }
+}
+
+fun with(receiver: Gift, giftFunc: Gift.() -> Unit) {
+    receiver.giftFunc()
 }
 
 

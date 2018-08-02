@@ -28,7 +28,49 @@ inline fun <reified E : Enum<E>> getAllValuesFromEnum(print: (E) -> Unit) {
             .forEach(print)
 }
 
+
+class Computer {
+
+    fun start(): Unit = println("I'm starting...")
+
+    fun stop(): Unit = println("I'm stopping")
+
+    fun calculate(i: Int, y: Int) = x + y
+}
+
+fun computerOperatorWithReturn(operation: Computer.() -> Int): Int {
+    val computer = Computer()
+    return computer.operation()
+}
+
+fun computerOperator(operation: Computer.() -> Unit): Unit {
+    val computer = Computer()
+
+    computer.operation()
+
+}
+
+
 fun main(args: Array<String>) {
+
+
+    computerOperator {
+        start()
+        stop()
+    }
+
+    computerOperatorWithReturn {
+        start()
+        return@computerOperatorWithReturn calculate(1, 2)
+    }
+
+
+    Computer().apply {
+        start()
+
+        stop()
+    }
+
 
     println("Genders")
     val lazyOf = lazyOf(getAllValuesFromEnum<Gender> {

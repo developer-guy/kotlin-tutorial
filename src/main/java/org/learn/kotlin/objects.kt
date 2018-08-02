@@ -2,6 +2,9 @@ package org.learn.kotlin
 
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
+import java.util.concurrent.locks.Lock
+import java.util.concurrent.locks.ReentrantLock
+import java.util.stream.Stream
 import javax.swing.JComponent
 
 // syntax
@@ -32,12 +35,39 @@ internal class MyClass2 private constructor() {
     }
 }
 
+fun Double.milesToKm() = converter(16)(this)
+
+fun converter(rate: Int): (Double) -> Double = fun(miles: Double) = rate * miles
+
+fun <T> sync(lock: Lock, block: () -> T): T {
+    lock.lock()
+    try {
+        return block()
+    } finally {
+        lock.unlock()
+    }
+}
+
+
 fun main(args: Array<String>) {
+
+    generateSequence(0) { it + 1 }
 
     val jsonObject = object {
         var node1: String = "123"
         var node2: Int = 19
     }
+
+    val lock = ReentrantLock()
+    sync(lock) {
+        println("Thread safe area !!!")
+        return@sync 42
+    }
+
+
+    println(100.0.milesToKm())
+
+
 
     println(jsonObject.node1.toInt() + jsonObject.node2)
 
