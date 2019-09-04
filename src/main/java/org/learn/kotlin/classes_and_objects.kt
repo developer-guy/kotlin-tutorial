@@ -1,5 +1,5 @@
 package org.learn.kotlin
-
+// constructor keyword can be omitted.
 abstract class Shape constructor(private val sides: List<Double>) {
     val perimeter: Double get() = sides.sum()
     abstract fun calculateArea(): Double
@@ -11,11 +11,8 @@ interface RectangleProperties {
 
 inline fun <reified T : Any> members() = T::class.members
 
-<<<<<<< HEAD
-class Rectangle internal constructor(var height: Double, var length: Double)
-=======
-class Rectangle internal constructor(private var height: Double, private var length: Double)
->>>>>>>  This is the 1st commit message:
+class Rectangle internal constructor(private var height: Double,
+                                     private var length: Double)
     : Shape(listOf(height, length)),
         RectangleProperties {
 

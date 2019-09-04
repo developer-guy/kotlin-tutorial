@@ -42,7 +42,6 @@ fun main(args: Array<String>) {
     println(words.filter(compose(::isOdd, ::length)).map(String::toUpperCase))
     //////////////////////
 
-
     //property references
     ::qert2.set(10)
     println(::qert.get())

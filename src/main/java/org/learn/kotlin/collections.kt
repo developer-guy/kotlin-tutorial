@@ -18,7 +18,6 @@ fun main(args: Array<String>) {
 
     assert(value = elements.size == 3)
 
-
     val mutableListOfContainsNullArguments = mutableListOf(1, 2, "a", 1.2)
 
     mutableListOfContainsNullArguments.requireNoNulls()
@@ -31,22 +30,19 @@ fun main(args: Array<String>) {
 
     println(snapshot)
 
-
     val mutableListWithNull = mutableListOf(1, null, 2, null)
 
     val mutableListWithOutNull = mutableListWithNull.filterNulls()
 
     mutableListWithOutNull.forEach { println(it) }
 
-
     val sampleList = mutableListOf(1, 2, 3, 4, 5, 6, 7)
 
-    sampleList.filter { it > 5 }
+    sampleList.filter { it > 5 }.forEach(::println)
 
-    sampleList.forEach(::println)
 }
 
-fun <T> MutableList<T>.filter(predicate: (T) -> Boolean) {
+fun <T> MutableList<T>.filter(predicate: (t: T) -> Boolean): MutableList<T> {
     val blackList = mutableListOf<T>()
 
     for (item in this) {
@@ -59,6 +55,8 @@ fun <T> MutableList<T>.filter(predicate: (T) -> Boolean) {
     println("Blacklist contains : $blackList .")
 
     this.removeAll(blackList)
+
+    return this
 }
 
 

@@ -1,12 +1,21 @@
 package org.learn.kotlin
 
-/** Defining Functions*/
-fun sum(a: Int, b: Int): Int = a + b
+/** Defining Functions with inferred return type and expression body*/
+fun sum(a: Int, b: Int) = a + b
+
+// same as above
+/*fun sum(a: Int,b : Int): Int {
+    return a+b
+}*/
 
 /** Function with an expression body and inferred return type*/
-fun subtraction(a: Int?, b: Int?): Int? = if (a == null || b == null) null else a - b
+fun subtraction(a: Int?, b: Int?): Int? =
+        if (a == null || b == null) null
+        else a - b
 
-/** Function returning no meaningful value*/
+/** Function returning no meaningful value
+ *  "Unit" return type can be omitted.
+ * */
 fun printSum(a: Int, b: Int): Unit {
     println("sum of $a and $b is ${a + b}")
 }
@@ -22,12 +31,12 @@ fun printProduct(arg1: String, arg2: String) {
     val x: Int? = parseInt(arg1)
     val y: Int? = parseInt(arg2)
 
-
     if (x != null && y != null) {
         println(x * y)
     } else {
-        println("either '$arg1' or '$arg2' is not a number")
+        println("either $arg1 or $arg2 is not a number")
     }
+
 }
 
 
@@ -45,7 +54,7 @@ fun getStringLength(obj: Any?): Int? {
 }
 
 
-infix fun Int.inx(range: IntRange): Boolean {
+infix fun Int.existsInBetween(range: IntRange): Boolean {
     var index = -1
     for ((i, v) in range.iterator().withIndex()) {
         if (this == v) {
@@ -149,8 +158,10 @@ fun main(args: Array<String>) {
     }
 
 
-    for (x in 10 downTo 0 step 3) {
-        println(x)
+    val intProgression = 10 downTo 0 step 3
+
+    for (p in intProgression) {
+        println(p)
     }
 
     when {
@@ -163,6 +174,8 @@ fun main(args: Array<String>) {
             .sortedBy { it.length }
             .map { it.toUpperCase() }
             .forEach { println(it) }
+
+    println(3.existsInBetween(1..4))
 }
 
 

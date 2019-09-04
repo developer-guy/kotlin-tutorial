@@ -12,7 +12,7 @@ class Address {
             if (value.length >= 5) field = value
         }
     var state: String? = ""
-        get() = field.toString()
+        get() = field
         set(x) {
             if (this.size >= 0) field = x  //This backing field can be referenced
             // in the accessors using the field identifier:

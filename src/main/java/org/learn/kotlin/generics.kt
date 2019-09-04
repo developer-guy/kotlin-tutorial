@@ -16,9 +16,9 @@ fun main(args: Array<String>) {
     val box2: Box<String> = Box("1")
     println("Box value ${box2.value}")
 
-    val numbers: Array<Int> = arrayOf(1, 2, 3, 4, 5)
+    val numbers: Array<out Any> = arrayOf(1, 2, 3, 4, 5)
 
-    val copyNumbers: Array<Number> = copy(numbers)
+    val copyNumbers: Array<in Int> = copy(numbers)
     println("3.index number in copy numbers: ${copyNumbers[3]}")
 
     copy2(copyNumbers)
@@ -38,14 +38,13 @@ fun copy2(arr: Array<in Int>) { // in Int means -->  ? super Int
 
 }
 
-fun copy(from: Array<out Any>): Array<Number> { // out Any means --> ? extends Any
+fun copy(from: Array<out Any>): Array<in Int> { // out Any means --> ? extends Any
     var to: Array<Number> = Array(from.size, { i: Int -> i })
     println("Copy started: ${LocalDateTime.now()}")
     for ((index, value) in from.withIndex()) {
         to[index] = value as Int // type casting
     }
     println("Copy finished: ${LocalDateTime.now()}")
-
 
     return to
 

@@ -5,7 +5,9 @@ import java.io.File as javaioFile
 
 /* data : provides a functionally to class
 for example equals,hashCode,copy,toString,componentN functions for all properties etc. */
-data class Customer constructor(val name: String, val email: String)
+data class Customer constructor(var name: String, var email: String) {
+    constructor() : this("", "")
+}
 
 
 class RelationShip constructor(val name: String, val timeToSpend: Int) {
@@ -18,18 +20,25 @@ class RelationShip constructor(val name: String, val timeToSpend: Int) {
     }
 }
 
-
 class RestTemplate(val rootUri: String) {
     constructor() : this("")
 }
 
+private val list = listOf(1, 2, 3, 4, 5)
+
 fun main(args: Array<String>) {
     val name = "Batuhan"
-    val customer = Customer(name, "bapaydin67@gmail.com")
+    val customer = Customer().apply {
+        this.name = name
+        this.email = "bapaydin67@gmail.com"
+    }
+
     printCustomerInformation(customer.email)
 
-    var numbers = listOf(1, 2, 3, 4, 5)
-    val filteredNumbers = numbers.filter { it >= 3 }
+    val numbers = listOf(1, 2, 3, 4, 5)
+    val filteredNumbers = numbers
+            .filter { it >= 3 }
+            .also { println(it) }
     // 'it' value is the shorter of element.
     // you can use filter like this
     // x -> x >= 3
@@ -57,7 +66,9 @@ fun main(args: Array<String>) {
     //if ( x in 1..10) x 1 ile 10 arasında mı ?
 
 
-    // val p : String  by lazy {}
+    val p: Int by lazy {
+        transform("Red")
+    }
 
     var restTemplate by Delegates.observable(RestTemplate(),
             onChange = { _, oldValue, newValue ->
@@ -75,13 +86,11 @@ fun main(args: Array<String>) {
 
     name.spaceToCamelCase()
 
-
     val listFiles = javaioFile("Test").listFiles()
     println(listFiles?.size ?: "empty")
 
     val transform = transform("Red")
     println(transform)
-
 
     /* if expression */
     val param = 10
@@ -96,13 +105,11 @@ fun main(args: Array<String>) {
 
     val result2 = theAnswer()
 
-
     arrayOf(1, 2, 3, 4, 5)
 
     val asc: Array<String> = Array(5) { (it * it).toString() }
 
     val x: IntArray = intArrayOf(1, 2, 3)
-
 
     val text = """
     |Tell me and I forget.
@@ -127,27 +134,45 @@ fun main(args: Array<String>) {
 
     println("$name length is $count")
 
-
     val relationShip = RelationShip("asena&batuhan", 3)
+            .let {
+                it.beOffended()
+                return@let it
+            }
 
-    with(relationShip) {
+    /*
+    * relationShip.beOffended()
+    * relationShip.makePeace()
+    *
+    * we grouped calls on object.
+    * */
+    var withLogic = with(relationShip) {
         this.beOffended() //this keyword can omit.
         this.makePeace()
+        return@with this
     }
 
+    println("withlogic relation ship mi ? ${withLogic is RelationShip}")
+
+    var a = 1
+    var b = 2
+
+    a = b.also { it -> b = a }
+
+    println("a is $a b is $b")
+
+    println("Array of minus ones ${arrayOfMinusOnes(5)[1]}}")
 }
 
-fun count(str: String?): Int {
-    if (str == null) throw NullPointerException()
+fun arrayOfMinusOnes(size: Int): IntArray =
+        IntArray(size).apply { this.fill(-1) }
 
-    return str.length
-}
+fun count(str: String?): Int = str?.length ?: throw NullPointerException()
 
 /* default values for function parameters*/
 fun printCustomerInformation(email: String = "xx", name: String = "Asena") {
     println("The name is $name and the email is $email")
 }
-
 
 /* extension functions  */
 fun String.spaceToCamelCase() {

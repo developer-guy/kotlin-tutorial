@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
 
     val doubledInts: List<Double> = ints.map { i -> i.toDouble() }
 
-    //only avaliable if that function takes one argument ,
+    //only available if that function takes one argument ,
     // implicit name of a single parameter
     val map2: List<Double> = ints.map { it.toDouble() }
 

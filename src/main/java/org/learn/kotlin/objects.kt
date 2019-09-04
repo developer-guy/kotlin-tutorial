@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
-import java.util.stream.Stream
 import javax.swing.JComponent
 
 // syntax
@@ -37,7 +36,7 @@ internal class MyClass2 private constructor() {
 
 fun Double.milesToKm() = converter(16)(this)
 
-fun converter(rate: Int): (Double) -> Double = fun(miles: Double) = rate * miles
+fun converter(rate: Int): (Double) -> Double = fun(miles: Double): Double = rate * miles
 
 fun <T> sync(lock: Lock, block: () -> T): T {
     lock.lock()

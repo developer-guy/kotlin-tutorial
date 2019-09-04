@@ -1,5 +1,22 @@
 package org.learn.kotlin
 
+interface Nameable {
+    var name: String
+}
+
+class JackName : Nameable {
+    override var name = "Jack"
+}
+
+
+class LongDistanceRunner : Runnable {
+    override fun run() {
+        println("long")
+    }
+}
+
+class PersonX(nameable: Nameable, runnable: Runnable) : Nameable by nameable, Runnable by runnable
+
 interface Driver {
     val age: Int
     val name: String
@@ -22,7 +39,7 @@ class Driver2 : Driver {
         get() = "Fox"
 }
 
-class ProxyDriver(driver: Driver) : Driver by driver
+class ProxyDriver(d: Driver) : Driver by d
 
 
 fun main(args: Array<String>) {
@@ -30,6 +47,9 @@ fun main(args: Array<String>) {
     val driver2 = Driver2()
     printInformationAboutDriver(driver1, driver2)
 
+    val personX = PersonX(JackName(),LongDistanceRunner())
+    println(personX.name)
+    println(personX.run())
 }
 
 
